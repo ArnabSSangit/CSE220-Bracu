@@ -1,0 +1,190 @@
+#1)a)
+def factorial(n):
+    if n>1:
+        return n*factorial(n-1)
+    else:
+        return n
+
+print(factorial(0))   
+
+
+#1)b)
+def fibonacci(n, f , l):
+    if n-1==0:
+        return f
+    else:
+        n_l = f +l 
+        f = l
+        return fibonacci(n-1, f ,n_l)
+print(fibonacci(10,0,1))  
+
+#1)c)
+def printArray(arr,i):
+    if i<len(arr):
+        print(arr[i],end=",")
+        return printArray(arr,i+1)
+
+arr=[1,2,3,4,5,6,7,8,9]
+print(printArray(arr,i=0))  
+
+
+#1)d)
+def powerN(x,y):
+    if y==0:
+        return 1
+    else:
+        m=powerN(x,y-1)
+        return m*x
+
+print(powerN(2,3))
+
+    
+
+
+#2)a)
+def deci_to_binary(n):
+    if n == 0:
+        return 0
+    else:
+        return deci_to_binary(n//2)*10 + (n % 2)
+
+
+decimal = deci_to_binary(11)
+print(decimal)
+
+
+#2)b)c)
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class linklist:
+    def __init__(self, array):
+        self.head = None
+        tail = None
+        for x in array:
+            new_node = Node(x)
+            if self.head == None:
+                self.head = new_node
+                tail = new_node
+            else:
+                tail.next = new_node
+                tail = new_node
+    def sum_add(self, head):
+        if head is None:
+            return 0
+        else:
+            return head.value + self.sum_add(head.next)
+
+    def sum(self):
+        return self.sum_add(self.head)            
+
+    def reverse(self, head):
+        if head.next is None:
+            print(head.value)
+        else:
+            self.reverse(head.next)
+            print(head.value)
+
+    def reverse_print(self):
+        return self.reverse(self.head)
+
+array = [1, 2, 3, 4, 5, 6, 7]
+listlinked = linklist(array)
+print("Sum =",end=" ")
+print(listlinked.sum())
+array = [1, 2, 3, 4, 5, 6, 7]
+print("Reversed = ")
+listlinked.reverse_print()
+
+
+
+
+
+#3)
+def hocBuilder(height):
+    if height>1:
+        return 5 + hocBuilder(height-1)
+
+    else:
+        return 8
+
+print(hocBuilder(5))       
+
+\
+
+#4)a)
+def patternN(num):
+    if num == 0:
+        return 0
+    else:
+        pattern(num-1)
+        print(num, end="  ")
+
+num = int(input("Enter n: "))
+
+print_pattern(n)  
+
+
+
+
+#4)b)
+def pattern(n):
+    if n == 0:
+        return 0
+    else:
+        pattern(n-1)
+        print(n, end="")
+
+
+def print_pattern(n, i):
+    if n == 0:
+        return 0
+    else:
+        space(n-1)
+        pattern((i)-n+1)
+        print()
+        print_pattern(n-1, i)
+
+
+def space(n):
+    if n == 0:
+        return 0
+    else:
+        space(n - 1)
+        print("",end=" ")
+
+
+print_pattern(5,5)   
+
+
+
+5)
+class FinalProfit:
+    def print(self, array, idx):
+        if(idx < len(array)):
+            profit = self.calcProfit(array[idx])
+            print(f"{str(idx+1)}. Investment: {array[idx]}; Profit: {profit} ")
+            self.print(array, idx+1)
+
+    def calcProfit(self, investment):
+        if investment <= 25000:
+            return 0.0
+        elif investment > 25000 and investment <= 100000:
+            return 45 + self.calcProfit(investment-1000)
+        elif investment > 100000:
+            return 80 + self.calcProfit(investment-1000)
+        else:
+            return 0
+
+
+array = [25000, 100000, 250000, 350000]
+f = FinalProfit()
+f.print(array, 0)
+        
+     
+
+
+

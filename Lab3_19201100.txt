@@ -1,0 +1,149 @@
+#Task 1
+class Node:
+    def __init__(self,prev,val,nxt):
+        self.Value = val
+        self.Previous = prev
+        self.Next = nxt
+
+#Task 2
+class DoublyList:
+    size = 0
+    #Task 1
+    def __init__(self, a = list):
+        DoublyList.size = len(a)
+        self.head = None
+        DoublyList.size = len(a)
+        current = None
+        #self.head = None
+        for i in range(len(a)):
+            if(self.head == None):
+                n = Node(None, a[i], None)
+                self.head = n
+                current = n
+            else:
+                while(current.Next is not None):
+                    current = current.Next
+                newNode = Node(current,a[i],None)
+                current.Next = newNode
+
+
+    #Task 2
+    def showList(self):
+        if self.head == None:
+            print("") 
+        else:
+            n = self.head
+            while n != None:
+                print(n.Value,end=" ")
+                n = n.Next
+        print("")
+
+    #Task 3
+    def insertNode(self,newElement = None):
+        i = self.head
+        while(i is not None):
+            if(i.Value == newElement.Value):
+                print("Key Already Exists")
+                return
+            i = i.Next
+        i = self.head
+        n = 1
+        while(n < DoublyList.size):
+            i = i.Next
+            n += 1
+        i.Next = newElement
+        newElement.Previous = i
+        i.next = newElement
+        newElement.Next = None
+        DoublyList.size += 1
+
+    #Task 4
+    def insert(self,newElement=0,index=0):
+        i = self.head
+        if(index < 1 or index > DoublyList.size):
+            raise IndexError
+        while(i is not None):
+            if(i.Value == newElement):
+                print("Key Already Exists")
+                return
+            i = i.Next
+        i = self.head
+        n = 1
+        while(n < index-1):
+            i = i.Next
+            n += 1
+        newNode = Node(i,newElement,i.Next)
+        i.Next.Previous = newNode
+        i.Next = newNode
+        DoublyList.size += 1
+
+    #Task 5
+    def remove(self,index = 0):
+        i = self.head
+        if(index < 1 or index > DoublyList.size):
+            raise IndexError
+        n = 1
+        while(n < index-1):
+            i = i.Next
+            n += 1
+        #i = self.head
+        if(i.Next.Next == None):
+            i.Next = None
+        else:
+            i.Next = i.Next.Next
+            i.Next.Previous = i.Next
+        DoublyList.size -= 1
+
+    #Task 6
+    def removeKey(self,deleteKey=0):
+        i = self.head
+        while(i is not None):
+            if(i.Value == deleteKey):
+                break
+            i = i.Next
+        i.Previous.Next = i.Next
+        i.Next.Previous = i.Previous
+        DoublyList.size -= 1
+
+        return deleteKey
+
+
+
+
+class Tester:
+    def __init__(self):
+        
+        print("..............................")
+        
+        print("..............................")
+        test1 = DoublyList([1,2,3,4,5,6,7,8,9])
+        test1.showList()
+        print("..............................")
+        
+        print("..............................")
+        test = Node(None,10,None)
+        test1.insertNode(test)
+        test1.showList()
+        print("..............................")
+        
+        print("..............................")
+        test1.insert(100, 5)
+        test1.showList()
+        print("..............................")
+        
+        print("..............................")
+        test1.remove(10)
+        test1.showList()
+        print("..............................")
+        test1.removeKey(2)
+        test1.showList()
+        print("..............................")
+        
+        print("..............................")
+
+
+
+
+
+if __name__ == "__main__":
+    Tester() 
